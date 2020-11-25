@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+	div { color: red; }
+	#title { color: yellow; }
+	div.title { color: blue; }
+</style>
+<body>
+    <ul id=test>
+        <li>a1</li>
+        <li>a2</li>
+        <li>a3</li>
+    </ul>
+    <script src="./demo1.js"></script>   
+ <script>
+    //  var title = document.getElementById('test')
+    //  title.onclick = function(event){
+    //     event = event || window.event // 额...理解不了的话，你当这个是一个DOM对象
+    //     target = event.target // 获得点击的最底层DOM
+    //     console.log(target)
+    //     if(target.nodeName === 'LI'){// 判断这个DOM节点名字是不是li，
+    //         console.log(target.innerHTML)
+    //     }
+    // }
+        // function foo(a,b) {
+        //     return a ;
+        // }
+        // console.log(foo.length) // 2  参数的个数
+        // console.log(foo.prototype) // 是个对象 object
+        // // 每个函数创建的时候都有一个prototype属性，最开始是一个空对象
+        // function Person(name) {
+        //     this.name = name
+        // }
+        // Person.prototype = {
+        //     add: function() {
+        //         console.log(this.name)
+        //     }
+        // }
+        // var person = new Person(); // person 继承了Person的prototype的属性，但是person本身没有prototype的属性
+        // console.log(person.prototype); // undefined
+        // console.log(Person.prototype) // 
+        // // 判断一个对象是不是某个构造函数创建
+        // console.log(person instanceof Person);
+        // console.log(person instanceof Object);
+        // var obj = {}
+        // console.log(obj instanceof Object);
+        // console.log(typeof Object); // function
+
+        // var name = 'lihh'
+        // var person = {
+        //     name: 'hh',
+        //     say: function() {
+        //         console.log(this.name)
+        //     }
+        // }
+        // person.say();
+        // console.log(this.name)
+        // console.log(person.constructor)// function
+        // console.log(person.valueOf())// function
+        // console.log(person.toString())// function
+        // // call和apply()
+        // console.log('学习call和apoly');
+        // var some_obj = {
+        //     name: 'nanja',
+        //     say: function(otherName) {
+        //         // console.log(this)
+        //         return 'hi ' + otherName +' i am ' + this.name
+        //     }
+        // }
+        // var my_obj = {
+        //     name: 'java'
+        // }
+        // console.log(some_obj.say('lichunyan'))
+        // console.log(some_obj.say.call(my_obj, 'a','b'))
+        // console.log(some_obj.say.call(null, 'a','b'))
+
+        // console.log('apply')
+        // console.log(some_obj.say('lichunyan'))
+        // console.log(some_obj.say.apply(my_obj, ['a','b']))
+        // console.log(some_obj.say.call(null, ['a','b']))
+
+        // console.log('将arguments对象转化为数组');
+        // // slice从已有的数组元素中返回选中的元素，
+        // function f() {
+        //     var args = [].slice.call(arguments);
+        //     return args
+        // }
+        // f(1,2,3,4)
+
+        // console.log('正则表达')
+        // console.log(/j.*t/i.exec('javascript')) // 返回一个数组
+
+// function parseJson (obj,level = 0) {
+//     if(typeof obj !== 'object') {
+//         return obj
+//     }
+//     function change(word) {
+//         return word.replace(/([A-Z])/g, '_$1').toLowerCase()
+//         // return word.toUpperCase()
+//     }
+//     Object.keys(obj).forEach(key => {
+//         console.log(key)
+//         var newKey = change(key)
+//         if(level > 0 && newKey != key) {
+//             obj[change(key)] = parseJson(obj[key],level-1)
+//             delete obj[key]
+//         }
+//     })
+//     return obj
+// }
+// let obj = {
+//     aBb:1,
+//     caseA: {
+//         caseB:2
+//     }
+// }
+// // parseJson(obj,2)
+// console.log(parseJson(obj,0))     
+// 深度遍历
+// function deep(node,nodeList) {
+//     if(node) {
+//         nodeList.push(node);
+//         var children = node.children;
+//         for(var i = 0; i < children.length;i++) {
+//             deep(children[i],nodeList) 
+//         }
+//     }
+//     return  nodeList
+// }   
+// let root = document.getElementById('root');
+// console.log(root)
+// console.log(deep(root,nodeList=[]))
+
+// // 非递归
+// function deepFirstSearch(node) {
+//     var nodeList = []
+//     if(node != null) {
+//         var stack = [];
+//     }
+//     return nodeList
+// }
+// 广度遍历
+// function bfs(node) {
+//     var nodes = [];
+//     var i = 0;
+//     if(!(node == null)) {
+//         nodes.push(node)
+//         bfs(node.nextElementSibling);
+//         node = node[i++]
+//     }
+// }
+// const maxDepth = (root) => {
+//   if (root == null) return 0;
+//   const leftMaxDepth = maxDepth(root.left);
+//   console.log(leftMaxDepth)
+//   const rightMaxDepth = maxDepth(root.right);
+//   console.log(1 + Math.max(leftMaxDepth, rightMaxDepth))
+//   return 1 + Math.max(leftMaxDepth, rightMaxDepth);
+// };
+// maxDepth([3,9,20,null,null,15,7])
+
+// const maxDepth = (root) => {
+//   if (root == null) return 0;
+//   const queue = root;
+//   console.log(queue)
+//   let depth = 1;
+//   while (queue.length) {
+//     // 当前层的节点个数
+
+//     console.log(queue.length)
+//     const levelSize = queue.length;          
+//     // 逐个让当前层的节点出列
+//     for (let i = 0; i < levelSize; i++) {    
+//       // 当前出列的节点
+//       const cur = queue.shift();            
+//       // 左右子节点入列
+//       if (cur.left) queue.push(cur.left);
+//       if (cur.right) queue.push(cur.right); 
+//     }
+//     // 当前层所有节点已经出列，如果有下一层节点，则队列不为空
+//     if (queue.length) depth++;
+//   }
+//   return depth;
+// };
+// maxDepth([3,9,20,null,null,15,7])
+// console.log(maxDepth([3,9,20,null,null,15,7]))
+// reduce实现
+// let arr = [1,[2,3,[4,5]],[{name:'li'}]]
+// function flatten(arr) { // 可以是对象
+//     return arr.reduce((result,item) => {
+//         return result.concat(Array.isArray(item)?flatten(item):item)
+//     },[])
+// }
+// // join，split实现
+// function flatten2(arr) { // 不可以是对象
+//     return arr.join(',').split(',').map(function(item){
+//         return parseInt(item)
+//     })
+// }
+// // 对象也是可以的
+// function flatten3(arr) {
+//     let result = [];
+//     arr.map(item => {
+//         if(Array.isArray(item)) {
+//             result = result.concat(flatten3(item))
+//         }else {
+//            result.push(item) 
+//         }
+//     }) 
+//     return result
+// }
+// function flatten4(arr) {
+//     let result = []
+//     for(let i = 0; i < arr.length; i++) {
+//         if(Array.isArray(arr[i])) {
+//             result = result.concat(flatten3(item))
+//         }else {
+//             result.push(item) 
+//         }
+
+//     }
+//     return result;
+// }
+// console.log(flatten3(arr))
+
+// const throttle = (fn,wait=50) => {
+//     let lastTime = 0;
+//     return function(...args) {
+//         let now = +new Date();
+//         if(now - lastTime > wait) {
+//             fn.apply(this,args)
+//             lastTime = now
+//         }
+//     }
+// }
+// const debounce = (fn,wait = 50) => {
+//     let time = 0
+//     return function(...args) {
+//         if(time) clearTimeout(time)
+//         time = setTimeout(() => {
+//             fn.apply(this,args)
+//         },wait)
+
+//     }
+// }
+// // 先序遍历
+// let result = [];
+// let dfs = function(node) {
+//     if(node) {
+//         dfs(node.left)
+//         result.push(node.value)
+//         dfs(node.right)
+//     }
+// }
+
+// function parseJson(obj,level) {
+//     if(typeof obj != 'object') {
+//         return obj
+//     }
+//     function change(word) {
+//         return word.replce()
+//     }
+//     Object.keys(obj).forEach(key => {
+//         var newKey = change(key)
+//         if(level > 0 && newKey != key)
+//         obj[newKey] = parseJson(obj[key],level-1)
+//         delete obj[key]
+//     })
+// }
+
+// // 深度遍历
+// function deep(node,nodeList) {
+//     if(node) {
+//         nodeList.push(node)
+//         var children = node.children;
+//         for(var i = 0; i < children.length;i++) {
+//             deep(children[i],nodeList) 
+//         }
+//     }
+// }
+// 实现 mergePromise
+// 最后输出: 1, 2, 3 'done' [1, 2, 3]
+// const timeout = ms => new Promise((resolve, reject) => {
+// 	setTimeout(() => resolve(), ms);
+// });
+
+// const ajax1 = () => timeout(2000).then(() => {
+// 	console.log('1');
+// 	return 1;
+// });
+
+// const ajax2 = () => timeout(1000).then(() => {
+// 	console.log('2');
+// 	return 2;
+// });
+
+// const ajax3 = () => timeout(2000).then(() => {
+// 	console.log('3');
+// 	return 3;
+// });
+// // var res=[];
+// async  function mergePromise(ajaxArray) {
+//     let res = [];
+//     for(let fn in ajaxArray) {
+//         var data = await ajaxArray[fn]();
+//         res.push(data)
+//     }
+//     return res
+// };
+
+// mergePromise([ajax1, ajax2, ajax3])
+// 	.then((data) => {
+// 		console.log('done');
+// 		console.log(data);
+// 	});
+// function light(fun,timer) {
+//     return Promise((resolve,reject) => {
+//         setTimeout(() => {
+//             resolve(fun())
+//         },timer)
+//     })
+// }
+// function index1() {
+//     light(red,1000).then((data) => {
+//         return light(green,1000)
+//     }).then((data => {
+//         return light(yellow,1000)
+//     }))
+// }
+// Promise.all = function(params) {
+//     return new Promise((resolve,reject) => {
+//         for(let i = 0; i < params.length; i++) {
+//             let arr = [];
+//             let indexi = 0;
+//             function processData(index,y) {
+//                 arr[index] = y;
+//                 if(++indexi == params.length) {
+//                     resolve(arr)
+//                 }
+//             }
+//             params[i].then(function(y) {
+//                 processData(i,y);
+//             },reject)
+//         }
+//     })
+// }
+
+// function sleep(ms) {
+//     var 
+
+// }
+// function quickSort(arr,left,right) {
+//     var len = arr.length;
+//     var partitionIndex;
+//     var left = typeof left != 'number' ? 0 : left;
+//     var right = typeof right != 'number'? len-1: right;
+//     if(left < right) {
+//         partitionIndex = partition(arr,left,right)
+//         console.log(partitionIndex)
+//         quickSort(arr,left,partitionIndex-1)
+//         quickSort(arr,partitionIndex+1,right)
+
+//     }
+//     return arr;
+// }
+// function partition(arr,left,right) {
+//     var current = left;
+//     var index = current+1;
+//     for(var i = index; i <=right; i++) {
+//         if(arr[i] < arr[current]) {
+//             swap(arr, i, index)
+//             index++
+//         }
+//     }
+//     swap(arr,current,index-1)                 
+//     return index-1;
+// }
+// function swap(arr,i,j) {
+//     var temp = arr[i];
+//     arr[i] = arr[j];
+//     arr[j] = temp;
+// }
+// let arr = [2,7,8,3,4,2,4,6,7]
+// quickSort(arr,0,9)
+// console.log(quickSort(arr,2,6))
+
+// function deepClone(target){
+//   if(target instanceof Object){
+//       let dist = {};
+//       for(let key in target){
+//         // 递归调用自己获取到每个值
+//           dist[key] = deepClone(target[key]);
+//       }
+//       return dist;
+//   }else{
+//       return target;
+//   }
+// }
+// let obj1 = {
+//   name:"hello",
+//   child:{
+//     name:"小明",
+//     child: {
+//         name: 'hhhh'
+//     }
+//   }
+// }
+// let obj2 = deepClone(obj1);
+// console.log(obj2)
+// 文件测试
+// console.log('4a');
+// setTimeout(()=> console.log('4 B'),1000);
+// const start = new Date();
+// while(new Date() - start < 3000){}
+// console.log('cccc');
+// setTimeout(() => console.log('4D'),0);
+// new Promise((resolve,reject) => {
+//     console.log('4E');
+//     foo.bar(1000)
+// }).then(()=> console.log('4F'))
+// .then(()=> console.log('4G'))
+// .catch(()=> console.log('4H'))
+// console.log('4I')
+
+// 二分法查找
+
+// function bsearch(A,x) {
+//     let l = 0;
+//     let r = A.length - 1;
+//     let guess; // 猜想的位置
+//     while(l <= r) {
+//         guess = Math.floor((l+r) / 2)
+//         if(A[guess] == x) {
+//             return guess
+//         }else if(A[guess] > x) {
+//             r = guess - 1
+//         }else {
+//             l = 54 guess+1
+//         }
+//     }
+//     return -1
+// }
+// A = [10,50,30,90,40,80,70]
+// // // console.log(bsearch(A,38))
+// // // 快速排序
+// function partition(A,lo,hi) {
+//     const pivot = A[hi-1] // 基准值选择最后一个值
+//     let i = lo, j = hi-1; // i，j是两个移动的指针，i是第一个值开始，j是最后一个值开始
+//     while(i !== j) {
+//         if(A[i] <= pivot) { // 如果前面的值小于基准值，则不需要交换，直接将i移动到下一个位置
+//             i++
+//         }else {
+//             swap(A,i,--j);
+//         }
+//     }
+//     swap(A,j,j-1); // 此时的交换是第一轮值已经排完了，将基准值放在中间分界线的位置
+//     return j //返回基准值的最终的位置，继续下一次递归
+// }
+// function swap(A,i,j) {
+//     [A[i],A[j]] = [A[j],A[i]]
+// }
+// function qSort(A,lo = 0, hi= A.length) {
+//     if(hi -lo <= 1) {
+//         return 
+//     }
+//     const p = partition(A,lo,hi);
+//     qSort(A, lo,p) 
+//     qSort(A,p+1,hi)
+
+// }
+// const p1 = partition(A,0,7)
+// console.log(p1,A)
+
+// // 求组合问题
+// function combination(s,k) {
+//     // s: 数组，需要邱组合的集合
+//     // k，取出元素的个数
+//     if( k === 0 || s.length === k) { // 判断终止条件，如果k取0个或者取的是整个数组的长度
+//         return [s.slice(0,k)]
+//     }
+//     const [first,...others] = s; // 将第一个元素与其他元素分离
+//     let r = [];
+//     r = r.concat(combination(others,k-1)).map(c => [first,...c])
+//     r = r.concat(combination(others,k))
+//     return r
+// }
+// const s = ['A','B','C','D']
+// console.log(combination(s,3))
+//  ["A", "B", "C"]
+//  ["A", "B", "D"]
+//  ["A", "C", "D"]
+//  ["B", "C", "D"]
+
+// 反转二叉树
+// function res
+// 解析url，返回一个对象
+// 简单不可靠版
+// function parse(str) {
+//     return str.split('&').reduce((o,kv) => {
+//         const [key,value] = kv.split('=');
+//         if(!value) {
+//             return o
+//         }
+//         o[key] = value
+//         return o
+//     },{})
+// }
+
+// // 当遇到下面的情况时，会有坑
+// str = 'a[name]=fox&a[company]=tecent&b=why'
+// str = 'color=Deep%20Blue'
+function Person() {
+
+}
+Person.prototype.getName = function() {
+  console.log('lll')
+}
+
+function Man() {
+
+}
+Man.prototype = new Person();
+let man1 = new Man()
+console.log(Man.prototype)
+console.log(Person.prototype)
+ </script>
+</body>
+</html>
